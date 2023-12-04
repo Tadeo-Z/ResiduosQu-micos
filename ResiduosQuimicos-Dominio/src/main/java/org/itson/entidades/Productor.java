@@ -31,7 +31,7 @@ public class Productor implements Serializable {
     private String nombre;
 
     @ManyToOne()
-    @JoinColumn(name = "id_productor_residuo", nullable = false)
+    @JoinColumn(name = "id_productor_residuo", nullable = true)
     private ProductorResiduo productorResiduo;
     
     public Productor(){}
