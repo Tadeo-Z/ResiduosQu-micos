@@ -34,7 +34,7 @@ public class Quimico implements Serializable {
     private String nombre;
     
     @ManyToOne()
-    @JoinColumn(name = "id_residuo", nullable = true)
+    @JoinColumn(name = "idResiduo", nullable = true)
     private Residuo residuo;
 
     public Quimico() {}

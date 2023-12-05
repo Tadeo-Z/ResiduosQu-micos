@@ -12,7 +12,7 @@ import javax.persistence.Persistence;
  * @author TADEO
  */
 public class Conexion {
-    private final String DIRECCION_PERSISTENCE = "org.itson.ResiduosQuimicos-Dominio_jar_1.0";
+    private final String DIRECCION_PERSISTENCE = "org.itson_ResiduosQuimicos-Dominio_jar_1.0PU";
     private static EntityManagerFactory entityManagerFactory;
     private static Conexion conexion;
     

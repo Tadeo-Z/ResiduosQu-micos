@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,13 +28,16 @@ public class ProductorResiduo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "productorResiduo")
+    @ManyToOne
+    @JoinColumn(name = "idProductor")
     private Productor productor;
-    
-    @OneToMany(mappedBy = "productorResiduo")
+
+    @ManyToOne
+    @JoinColumn(name = "idResiduo")
     private Residuo residuo;
 
-    public ProductorResiduo() {}
+    public ProductorResiduo() {
+    }
 
     public ProductorResiduo(Long id) {
         this.id = id;
@@ -43,11 +48,11 @@ public class ProductorResiduo implements Serializable {
         this.productor = productor;
         this.residuo = residuo;
     }
-    
+
     public Long getId() {
         return id;
     }
-    
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -92,5 +97,5 @@ public class ProductorResiduo implements Serializable {
     public String toString() {
         return "ProductorResiduo{" + "id=" + id + ", productor=" + productor + ", residuo=" + residuo + '}';
     }
-    
+
 }

@@ -30,7 +30,8 @@ public class ResiduoSolicitud implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "residuo")
+    @ManyToOne
+    @JoinColumn(name = "idResiduo")
     private Residuo residuo;
     
     @Column(name = "cantidad")
