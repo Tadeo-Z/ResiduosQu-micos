@@ -10,7 +10,7 @@ import org.itson.excepciones.BOException;
 /**
  *
  * @author TADEO
-*
+ *
  * Interfaz que define las operaciones de lógica de negocio (BO) para la gestión de solicitudes de residuos.
  * 
  * Las clases que implementen esta interfaz deben proporcionar implementaciones para registrar
