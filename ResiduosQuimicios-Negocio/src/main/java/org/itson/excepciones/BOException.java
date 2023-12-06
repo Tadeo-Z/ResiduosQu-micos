@@ -10,13 +10,27 @@ package org.itson.excepciones;
  */
 public class BOException extends Exception{
 
+    /**
+     * Constructor predeterminado de la excepción sin mensaje.
+     */
     public BOException() {
     }
 
+    /**
+     * Constructor que acepta un mensaje descriptivo para la excepción.
+     *
+     * @param message Mensaje descriptivo de la excepción.
+     */
     public BOException(String message) {
         super(message);
     }
 
+    /**
+     * Constructor que acepta un mensaje descriptivo y una causa subyacente para la excepción.
+     *
+     * @param message Mensaje descriptivo de la excepción.
+     * @param cause Causa subyacente de la excepción.
+     */
     public BOException(String message, Throwable cause) {
         super(message, cause);
     }
