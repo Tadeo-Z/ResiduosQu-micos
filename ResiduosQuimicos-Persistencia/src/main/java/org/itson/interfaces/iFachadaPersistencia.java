@@ -18,44 +18,45 @@ import org.itson.excepciones.PersistenciaException;
 /**
  *
  * @author TADEO
+ * Interfaz que define los métodos de persistencia para la fachada de persistencia.
  */
 public interface iFachadaPersistencia {
-    
+
     public EmpresaTransportista registrar(EmpresaTransportista empresaTransportistaRegistrar) throws PersistenciaException;
-    
+
     public EmpresaTransportista buscarEmpresaTransportista(int idEmpresaTransportista) throws PersistenciaException;
-    
+
     public Productor registrar(Productor productorRegistrar) throws PersistenciaException;
-    
+
     public Productor actualizar(Productor productorActualizar) throws PersistenciaException;
-    
+
     public Productor buscarProductor(int idProductor) throws PersistenciaException;
-    
+
     public ProductorResiduo registrar(ProductorResiduo productorResiduoRegistrar) throws PersistenciaException;
-    
+
     public ProductorResiduo buscarProductorResiduo(int idProductorResiduo) throws PersistenciaException;
-    
+
     public Quimico registrar(Quimico quimicoRegistrar) throws PersistenciaException;
-    
+
     public Quimico buscarQuimico(int idQuimico) throws PersistenciaException;
-    
+
     public Residuo registrar(Residuo residuoRegistrar) throws PersistenciaException;
-    
+
     public Residuo buscarResiduo(int idResiduo) throws PersistenciaException;
-    
+
     public ResiduoSolicitud registrar(ResiduoSolicitud residuoSolicitudRegistrar) throws PersistenciaException;
-    
+
     public ResiduoSolicitud buscarResiduoSolicitud(int idResiduoSolicitud) throws PersistenciaException;
-    
+
     public Solicitud registrar(Solicitud solicitudRegistrar) throws PersistenciaException;
-    
+
     public Solicitud buscarSolicitud(int idSolicitud) throws PersistenciaException;
-    
+
     public Transporte registrar(Transporte transporteRegistrar) throws PersistenciaException;
-    
+
     public Transporte buscarTransporte(int idTransporte) throws PersistenciaException;
-    
+
     public Traslado registrar(Traslado trasladoRegistrar) throws PersistenciaException;
-    
+
     public Traslado buscarTraslado(int idTraslado) throws PersistenciaException;
 }
