@@ -13,39 +13,61 @@ import org.itson.interfaces.iTraslado;
 /**
  *
  * @author TADEO
+ * Clase que implementa la interfaz iTraslado y se encarga de realizar operaciones de persistencia
+ * relacionadas con la entidad Traslado.
  */
-public class TrasladoDAO implements iTraslado{
+public class TrasladoDAO implements iTraslado {
 
+    /**
+     * Factoría de Entity Manager para gestionar las entidades de persistencia.
+     */
     EntityManagerFactory emf;
-    
+
+    /**
+     * Registra un nuevo Traslado en la base de datos.
+     *
+     * @param trasladoRegistrar El Traslado a registrar.
+     * @return El Traslado registrado.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
     @Override
     public Traslado registrar(Traslado trasladoRegistrar) throws PersistenciaException {
         EntityManager em = emf.createEntityManager();
-        
-        try{
+
+        try {
             em.getTransaction().begin();
             em.persist(trasladoRegistrar);
             em.getTransaction().commit();
-        }catch(Exception e){
+        } catch (Exception e) {
             em.getTransaction().rollback();
+        } finally {
+            em.close();
         }
-        
+
         return trasladoRegistrar;
     }
-    
-    public Traslado buscar(int idTraslado) throws PersistenciaException{
+
+    /**
+     * Busca un Traslado en la base de datos por su identificador.
+     *
+     * @param idTraslado El identificador del Traslado a buscar.
+     * @return El Traslado encontrado o null si no se encuentra.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    public Traslado buscar(int idTraslado) throws PersistenciaException {
         EntityManager em = emf.createEntityManager();
         Traslado trasladoBuscar = null;
-        
-        try{
+
+        try {
             em.getTransaction().begin();
             trasladoBuscar = em.find(Traslado.class, idTraslado);
             em.getTransaction().commit();
-        }catch(Exception e){
+        } catch (Exception e) {
             em.getTransaction().rollback();
+        } finally {
+            em.close();
         }
-        
+
         return trasladoBuscar;
     }
-    
 }
