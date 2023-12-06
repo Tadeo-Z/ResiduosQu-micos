@@ -14,42 +14,68 @@ import org.itson.interfaces.iResiduo;
 /**
  *
  * @author TADEO
+ * Clase que implementa la interfaz iResiduo y se encarga de realizar operaciones de persistencia
+ * relacionadas con la entidad Residuo.
  */
-public class ResiduoDAO implements iResiduo{
-    
+public class ResiduoDAO implements iResiduo {
+
+    /**
+     * Factoría de Entity Manager para gestionar las entidades de persistencia.
+     */
     EntityManagerFactory emf;
 
-    public ResiduoDAO(){
+    /**
+     * Constructor de la clase que inicializa la factoría de Entity Manager.
+     */
+    public ResiduoDAO() {
         this.emf = Conexion.getConexion();
     }
-    
+
+    /**
+     * Registra un nuevo Residuo en la base de datos.
+     *
+     * @param residuoRegistrar El Residuo a registrar.
+     * @return El Residuo registrado.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
     @Override
     public Residuo registrar(Residuo residuoRegistrar) throws PersistenciaException {
         EntityManager em = emf.createEntityManager();
-        
-        try{
+
+        try {
             em.getTransaction().begin();
             em.persist(residuoRegistrar);
             em.getTransaction().commit();
-        }catch(Exception e){
+        } catch (Exception e) {
             em.getTransaction().rollback();
+        } finally {
+            em.close();
         }
-        
+
         return residuoRegistrar;
     }
-    
-    public Residuo buscar(int idResiduo) throws PersistenciaException{
+
+    /**
+     * Busca un Residuo en la base de datos por su identificador.
+     *
+     * @param idResiduo El identificador del Residuo a buscar.
+     * @return El Residuo encontrado o null si no se encuentra.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    public Residuo buscar(int idResiduo) throws PersistenciaException {
         EntityManager em = emf.createEntityManager();
         Residuo residuoBuscar = null;
-        
-        try{
+
+        try {
             em.getTransaction().begin();
             residuoBuscar = em.find(Residuo.class, idResiduo);
             em.getTransaction().commit();
-        }catch(Exception e){
+        } catch (Exception e) {
             em.getTransaction().rollback();
+        } finally {
+            em.close();
         }
-        
+
         return residuoBuscar;
     }
 }
