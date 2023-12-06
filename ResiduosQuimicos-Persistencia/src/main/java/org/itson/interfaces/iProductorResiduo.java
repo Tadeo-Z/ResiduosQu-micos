@@ -10,8 +10,11 @@ import org.itson.excepciones.PersistenciaException;
 /**
  *
  * @author TADEO
+ * Interfaz que define los métodos de persistencia para la entidad ProductorResiduo.
  */
 public interface iProductorResiduo {
+
     public ProductorResiduo registrar(ProductorResiduo productorResiduoRegistrar) throws PersistenciaException;
+
     public ProductorResiduo buscar(int idProductorResiduo) throws PersistenciaException;
 }
