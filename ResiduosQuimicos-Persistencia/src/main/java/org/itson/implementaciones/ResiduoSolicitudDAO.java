@@ -38,4 +38,19 @@ public class ResiduoSolicitudDAO implements iResiduoSolicitud{
         return residuoSolicitudRegistrar;
     }
     
+    public ResiduoSolicitud buscar(int idResiduoSolicitud) throws PersistenciaException{
+        EntityManager em = emf.createEntityManager();
+        ResiduoSolicitud residuoSolicitudBuscar = null;
+        
+        try{
+            em.getTransaction().begin();
+            residuoSolicitudBuscar = em.find(ResiduoSolicitud.class, idResiduoSolicitud);
+            em.getTransaction().commit();
+        }catch(Exception e){
+            em.getTransaction().rollback();
+        }
+        
+        return residuoSolicitudBuscar;
+    }
+    
 }

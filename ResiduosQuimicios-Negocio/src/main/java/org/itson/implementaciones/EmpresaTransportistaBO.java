@@ -34,9 +34,26 @@ public class EmpresaTransportistaBO implements iEmpresaTransportistaBO{
         }
     }
     
+    public EmpresaTransportista buscar(int idEmpresaTransportista) throws BOException{
+        try{
+            this.validarBuscarEmpresaTransportista(idEmpresaTransportista);
+            return persistencia.buscarEmpresaTransportista(idEmpresaTransportista);
+        }catch(PersistenciaException e){
+            throw new BOException(e.getMessage(), e);
+        }catch(ValidacionesException a){
+            throw new BOException(a.getMessage(), a);
+        }
+    }
+    
     private void validarRegistrarEmpresaTransportista(EmpresaTransportista empresaTransportistaValidar) throws ValidacionesException{
         if(empresaTransportistaValidar == null){
-            throw new ValidacionesException("Persona a insertar es nulo / No hay informacion");
+            throw new ValidacionesException("Empresa transportista a insertar es nulo / No hay informacion");
+        }
+    }
+    
+    private void validarBuscarEmpresaTransportista(int empresaTransportistaValidar) throws ValidacionesException{
+        if(empresaTransportistaValidar <= 0){
+            throw new ValidacionesException("ID de la empresa transportista es menor o igual a 0");
         }
     }
     

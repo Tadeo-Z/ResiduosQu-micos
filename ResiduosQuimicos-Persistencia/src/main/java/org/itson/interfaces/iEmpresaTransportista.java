@@ -13,4 +13,5 @@ import org.itson.excepciones.PersistenciaException;
  */
 public interface iEmpresaTransportista {
     public EmpresaTransportista registrar(EmpresaTransportista empresaTransportistaRegistrar) throws PersistenciaException;
+    public EmpresaTransportista buscar(int idEmpresaTransportista) throws PersistenciaException;
 }

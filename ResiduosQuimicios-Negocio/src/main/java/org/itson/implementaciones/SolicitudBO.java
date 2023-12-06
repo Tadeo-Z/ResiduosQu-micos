@@ -34,9 +34,24 @@ public class SolicitudBO implements iSolicitudBO{
         }
     }
     
+    public Solicitud buscar(int idSolicitud) throws BOException{
+        try{
+            this.validarBuscarSolicitud(idSolicitud);
+            return persistencia.buscarSolicitud(idSolicitud);
+        }catch(PersistenciaException | ValidacionesException e){
+            throw new BOException(e.getMessage(), e);
+        }
+    }
+    
     private void validarRegistrarSoliciutd(Solicitud solicitudValidar) throws ValidacionesException{
         if(solicitudValidar == null){
             throw new ValidacionesException("Solicitud a registrar es nulo / No hay informacion");
+        }
+    }
+    
+    private void validarBuscarSolicitud(int solicitudValidar) throws ValidacionesException{
+        if(solicitudValidar <= 0){
+            throw new ValidacionesException("ID de la solicitud es menor o igual a 0");
         }
     }
     

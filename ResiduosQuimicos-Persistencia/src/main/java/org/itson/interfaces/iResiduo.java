@@ -13,4 +13,6 @@ import org.itson.excepciones.PersistenciaException;
  */
 public interface iResiduo {
     public Residuo registrar(Residuo residuoRegistrar) throws PersistenciaException;
+    
+    public Residuo buscar(int idResiduo) throws PersistenciaException;
 }

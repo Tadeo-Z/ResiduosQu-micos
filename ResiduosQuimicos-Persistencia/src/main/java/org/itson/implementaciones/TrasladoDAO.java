@@ -33,4 +33,19 @@ public class TrasladoDAO implements iTraslado{
         return trasladoRegistrar;
     }
     
+    public Traslado buscar(int idTraslado) throws PersistenciaException{
+        EntityManager em = emf.createEntityManager();
+        Traslado trasladoBuscar = null;
+        
+        try{
+            em.getTransaction().begin();
+            trasladoBuscar = em.find(Traslado.class, idTraslado);
+            em.getTransaction().commit();
+        }catch(Exception e){
+            em.getTransaction().rollback();
+        }
+        
+        return trasladoBuscar;
+    }
+    
 }

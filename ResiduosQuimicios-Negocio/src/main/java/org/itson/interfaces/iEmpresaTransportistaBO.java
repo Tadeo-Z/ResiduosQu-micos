@@ -15,4 +15,6 @@ public interface iEmpresaTransportistaBO {
     
     public EmpresaTransportista registrar(EmpresaTransportista empresaTransportistaRegistrar) throws BOException;
 
+    public EmpresaTransportista buscar(int idEmpresaTransportista) throws BOException;
+    
 }

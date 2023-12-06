@@ -13,4 +13,5 @@ import org.itson.excepciones.PersistenciaException;
  */
 public interface iProductorResiduo {
     public ProductorResiduo registrar(ProductorResiduo productorResiduoRegistrar) throws PersistenciaException;
+    public ProductorResiduo buscar(int idProductorResiduo) throws PersistenciaException;
 }

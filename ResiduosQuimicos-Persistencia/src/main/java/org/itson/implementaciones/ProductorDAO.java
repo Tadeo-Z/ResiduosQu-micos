@@ -52,4 +52,19 @@ public class ProductorDAO implements iProductor{
         return productorActualizar;
     }
     
+    public Productor buscar(int idProductor) throws PersistenciaException{
+        EntityManager em = emf.createEntityManager();
+        Productor productorBuscar = null;
+        
+        try{
+            em.getTransaction().begin();
+            productorBuscar = em.find(Productor.class, idProductor);
+            em.getTransaction().commit();
+        }catch(Exception e){
+            em.getTransaction().rollback();
+        }
+        
+        return productorBuscar;
+    }
+    
 }

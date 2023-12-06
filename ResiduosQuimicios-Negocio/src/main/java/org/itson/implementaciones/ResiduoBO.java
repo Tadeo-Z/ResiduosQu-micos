@@ -34,10 +34,24 @@ public class ResiduoBO implements iResiduoBO{
         }
     }
     
+    public Residuo buscar(int idResiduo) throws BOException{
+        try{
+            this.validaBuscarResiduo(idResiduo);
+            return persistencia.buscarResiduo(idResiduo);
+        }catch(PersistenciaException | ValidacionesException e){
+            throw new BOException(e.getMessage(), e);
+        }
+    }
+    
     private void validarRegistrarResiduo(Residuo residuoValidar) throws ValidacionesException{
         if(residuoValidar == null){
             throw new ValidacionesException("Residuo a registrar es nulo / No hay informacion");
         }
     }
     
+    private void validaBuscarResiduo(int residuoValidar) throws ValidacionesException{
+        if(residuoValidar <= 0){
+            throw new ValidacionesException("ID del residuo es menor o igual a 0");
+        }
+    }
 }

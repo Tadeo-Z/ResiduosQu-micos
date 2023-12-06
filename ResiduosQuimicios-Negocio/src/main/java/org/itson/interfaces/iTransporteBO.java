@@ -15,4 +15,6 @@ public interface iTransporteBO {
     
     public Transporte registrar(Transporte transporteRegistrar) throws BOException;
     
+    public Transporte buscar(int idTransporte) throws BOException;
+    
 }

@@ -15,4 +15,5 @@ public interface iProductorResiduoBO {
     
     public ProductorResiduo registrar(ProductorResiduo productorResiduoRegistrar) throws BOException;
     
+    public ProductorResiduo buscar(int idProductorResiduo) throws BOException;
 }

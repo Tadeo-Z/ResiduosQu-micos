@@ -34,9 +34,24 @@ public class ResiduoSolicitudBO implements iResiduoSolicitudBO{
         }
     }
     
+    public ResiduoSolicitud buscar(int idResiduoSolicitud) throws BOException{
+        try{
+            this.validarBuscarResiduoSolicitud(idResiduoSolicitud);
+            return persistencia.buscarResiduoSolicitud(idResiduoSolicitud);
+        }catch(PersistenciaException | ValidacionesException e){
+            throw new BOException(e.getMessage(), e);
+        }
+    }
+    
     private void validarRegistrarResiduoSolicitud(ResiduoSolicitud residuoSolicitudValidar) throws ValidacionesException{
         if(residuoSolicitudValidar == null){
             throw new ValidacionesException("ResiduoSolicitud a registrar vacio / No hay informacion");
+        }
+    }
+    
+    private void validarBuscarResiduoSolicitud(int residuoSolicitudValidar) throws ValidacionesException{
+        if(residuoSolicitudValidar <= 0){
+            throw new ValidacionesException("ID del residuo solicitud es menor o igual a cero");
         }
     }
     

@@ -38,4 +38,19 @@ public class TransporteDAO implements iTransporte{
         return transporteRegistrar;
     }
     
+    public Transporte buscar(int idTransporte) throws PersistenciaException{
+        EntityManager em = emf.createEntityManager();
+        Transporte transporteBuscar = null;
+        
+        try{
+            em.getTransaction().begin();
+            transporteBuscar = em.find(Transporte.class, idTransporte);
+            em.getTransaction().commit();
+        }catch(Exception e){
+            em.getTransaction().rollback();
+        }
+        
+        return transporteBuscar;
+    }
+    
 }

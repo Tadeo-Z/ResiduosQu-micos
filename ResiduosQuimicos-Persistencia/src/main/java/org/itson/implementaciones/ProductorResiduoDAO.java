@@ -37,4 +37,19 @@ public class ProductorResiduoDAO implements iProductorResiduo{
         return productorResiduoRegistrar;
     }
     
+    public ProductorResiduo buscar(int idProductorResiduo) throws PersistenciaException{
+        EntityManager em = emf.createEntityManager();
+        ProductorResiduo productorResiduoBuscar = null;
+        
+        try{
+            em.getTransaction().begin();
+            productorResiduoBuscar = em.find(ProductorResiduo.class, idProductorResiduo);
+            em.getTransaction().commit();
+        }catch(Exception e){
+            em.getTransaction().rollback();
+        }
+        
+        return productorResiduoBuscar;
+    }
+    
 }

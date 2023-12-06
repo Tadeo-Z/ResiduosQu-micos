@@ -13,4 +13,6 @@ import org.itson.excepciones.PersistenciaException;
  */
 public interface iTransporte {
     public Transporte registrar(Transporte transporteRegistrar) throws PersistenciaException;
+    
+    public Transporte buscar(int idTransporte) throws PersistenciaException;
 }

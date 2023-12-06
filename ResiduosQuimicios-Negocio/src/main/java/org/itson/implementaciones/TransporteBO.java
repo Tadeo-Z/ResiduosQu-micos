@@ -34,10 +34,25 @@ public class TransporteBO implements iTransporteBO{
         }
     }
     
+    public Transporte buscar(int idTransporte) throws BOException{
+        try{
+            this.validarBuscarTransporte(idTransporte);
+            return persistencia.buscarTransporte(idTransporte);
+        }catch(PersistenciaException | ValidacionesException e){
+            throw new BOException(e.getMessage(), e);
+        }
+    }
+    
     private void validarRegistrarTransporte(Transporte transporteValidar) throws ValidacionesException{
         if(transporteValidar == null){
             throw new ValidacionesException("Transporte a registrar es nulo / No hay informacion");
         }
     }
     
+    
+    private void validarBuscarTransporte(int transporteValidar) throws ValidacionesException{
+        if(transporteValidar <= 0){
+            throw new ValidacionesException("ID de transporte es menor o igual a 0");
+        }
+    }
 }

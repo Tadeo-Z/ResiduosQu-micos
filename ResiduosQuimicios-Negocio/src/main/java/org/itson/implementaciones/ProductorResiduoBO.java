@@ -33,10 +33,25 @@ public class ProductorResiduoBO implements iProductorResiduoBO{
             throw new BOException(a.getMessage(), a);
         }
     }
+    
+    public ProductorResiduo buscar(int idProductorResiduo) throws BOException{
+        try{
+            this.validarBuscarProductorResiduo(idProductorResiduo);
+            return persistencia.buscarProductorResiduo(idProductorResiduo);
+        }catch(PersistenciaException | ValidacionesException e){
+            throw new BOException(e.getMessage(), e);
+        }
+    }
  
     private void validarRegistrarProductorResiduo(ProductorResiduo productorResiduoValidar) throws ValidacionesException{
         if(productorResiduoValidar == null){
             throw new ValidacionesException("ProductorResiduo a insertar es nulo / No hay informacion");
+        }
+    }
+    
+    private void validarBuscarProductorResiduo(int productorResiduoValidar) throws ValidacionesException{
+        if(productorResiduoValidar <= 0){
+            throw new ValidacionesException("ID de productor residuo es menor o igual a 0");
         }
     }
     

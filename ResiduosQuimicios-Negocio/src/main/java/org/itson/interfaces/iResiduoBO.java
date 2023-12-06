@@ -15,4 +15,5 @@ public interface iResiduoBO {
     
     public Residuo registrar(Residuo residuoRegistrar) throws BOException;
     
+    public Residuo buscar(int idResiduo) throws BOException;
 }

@@ -34,10 +34,24 @@ public class TrasladoBO implements iTrasladoBO{
         }
     }
     
+    public Traslado buscar(int idTraslado) throws BOException{
+        try{
+            this.validarBuscarTraslado(idTraslado);
+            return persistencia.buscarTraslado(idTraslado);
+        }catch(PersistenciaException | ValidacionesException e){
+            throw new BOException(e.getMessage(), e);
+        }
+    }
+    
     private void validarRegistrarTraslado(Traslado trasladoValidar) throws ValidacionesException{
         if(trasladoValidar == null){
             throw new ValidacionesException("Traslado a registrar es nulo / No hay informacion");
         }
     }
     
+    private void validarBuscarTraslado(int trasladoValidar) throws ValidacionesException{
+        if(trasladoValidar <= 0){
+            throw new ValidacionesException("ID de traslado es menor o igual a 0");
+        }
+    }
 }

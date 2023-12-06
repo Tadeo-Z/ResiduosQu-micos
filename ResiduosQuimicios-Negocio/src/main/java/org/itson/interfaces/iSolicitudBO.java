@@ -15,4 +15,5 @@ public interface iSolicitudBO {
     
     public Solicitud registrar(Solicitud solicitudRegistrar) throws BOException;
     
+    public Solicitud buscar(int idSolicitud) throws BOException;
 }

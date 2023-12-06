@@ -38,4 +38,19 @@ public class EmpresaTransportistaDAO implements iEmpresaTransportista{
         return empresaTransportistaRegistrar;
     }
     
+    public EmpresaTransportista buscar(int idEmpresaTransportista) throws PersistenciaException{
+        EntityManager em = emf.createEntityManager();
+        EmpresaTransportista empresaTransportistaBuscar = null;
+        
+        try{
+            em.getTransaction().begin();
+            empresaTransportistaBuscar = em.find(EmpresaTransportista.class, idEmpresaTransportista);
+            em.getTransaction().commit();
+        }catch(Exception e){
+            em.getTransaction().rollback();
+        }
+        
+        return empresaTransportistaBuscar;
+    }
+    
 }

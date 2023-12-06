@@ -38,4 +38,19 @@ public class SolicitudDAO implements iSolicitud{
         return solicitudRegistrar;
     }
     
+    public Solicitud buscar(int idSolicitud) throws PersistenciaException{
+        EntityManager em = emf.createEntityManager();
+        Solicitud solicitudBuscar = null;
+        
+        try{
+            em.getTransaction().begin();
+            solicitudBuscar = em.find(Solicitud.class, idSolicitud);
+            em.getTransaction().commit();
+        }catch(Exception e){
+            em.getTransaction().rollback();
+        }
+        
+        return solicitudBuscar;
+    }
+    
 }

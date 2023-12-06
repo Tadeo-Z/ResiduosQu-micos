@@ -38,4 +38,19 @@ public class QuimicoDAO implements iQuimico{
         return quimicoRegistrar;
     }
     
+    public Quimico buscar(int idQuimico) throws PersistenciaException{
+        EntityManager em = emf.createEntityManager();
+        Quimico quimicoBuscar = null;
+        
+        try{
+            em.getTransaction().begin();
+            quimicoBuscar = em.find(Quimico.class, idQuimico);
+            em.getTransaction().commit();
+        }catch(Exception e){
+            em.getTransaction().rollback();
+        }
+             
+        return quimicoBuscar;
+    }
+    
 }

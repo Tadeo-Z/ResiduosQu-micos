@@ -45,6 +45,15 @@ public class ProductorBO implements iProductorBO{
         }
     }
     
+    public Productor buscar(int idProductor) throws BOException{
+        try{
+            this.validarBuscarProductor(idProductor);
+            return persistencia.buscarProductor(idProductor);
+        }catch(PersistenciaException | ValidacionesException e){
+            throw new BOException(e.getMessage(), e);
+        }
+    }
+    
     private void validarRegistrarProductor(Productor productorValidar) throws ValidacionesException{
         if(productorValidar == null){
             throw new ValidacionesException("Producto a insertar es nulo / No hay informacion");
@@ -54,6 +63,12 @@ public class ProductorBO implements iProductorBO{
     private void validarActualizarProductor(Productor productorValidar) throws ValidacionesException{
         if(productorValidar == null){
             throw new ValidacionesException("Productor a actualizar es nulo / No hay informacion");
+        }
+    }
+    
+    private void validarBuscarProductor(int productorValidar) throws ValidacionesException{
+        if(productorValidar <= 0){
+            throw new ValidacionesException("ID de productor es menor o igual a 0");
         }
     }
     

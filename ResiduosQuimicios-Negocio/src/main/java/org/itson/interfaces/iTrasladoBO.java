@@ -15,4 +15,6 @@ public interface iTrasladoBO {
     
     public Traslado registrar(Traslado trasladoRegistrar) throws BOException;
     
+    public Traslado buscar(int idTraslado) throws BOException;
+    
 }

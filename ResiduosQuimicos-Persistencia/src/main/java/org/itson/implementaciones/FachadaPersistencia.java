@@ -66,6 +66,15 @@ public class FachadaPersistencia implements iFachadaPersistencia{
         return empresaTransportistaRegistrar;
     }
 
+    public EmpresaTransportista buscarEmpresaTransportista(int idEmpresaTransportista) throws PersistenciaException{
+        try{
+            empresaTransportistaDAO.buscar(idEmpresaTransportista);
+        }catch(PersistenciaException e){
+            throw new PersistenciaException(e.getMessage());
+        }
+        return empresaTransportistaDAO.buscar(idEmpresaTransportista);
+    }
+    
     @Override
     public Productor registrar(Productor productorRegistrar) throws PersistenciaException {
         try{
@@ -86,6 +95,16 @@ public class FachadaPersistencia implements iFachadaPersistencia{
         
         return productorActualizar;
     }
+    
+    public Productor buscarProductor(int idProductor) throws PersistenciaException{
+        try{
+            productorDAO.buscar(idProductor);
+        }catch(PersistenciaException e){
+            throw new PersistenciaException(e.getMessage());
+        }
+        
+        return productorDAO.buscar(idProductor);
+    }
 
     @Override
     public ProductorResiduo registrar(ProductorResiduo productorResiduoRegistrar) throws PersistenciaException {
@@ -97,6 +116,16 @@ public class FachadaPersistencia implements iFachadaPersistencia{
         
         return productorResiduoRegistrar;
     }
+    
+    public ProductorResiduo buscarProductorResiduo(int idProductorResiduo) throws PersistenciaException{
+        try{
+            productorResiduoDAO.buscar(idProductorResiduo);
+        }catch(PersistenciaException e){
+            throw new PersistenciaException(e.getMessage());
+        }
+        
+        return productorResiduoDAO.buscar(idProductorResiduo);
+    }
 
     @Override
     public Quimico registrar(Quimico quimicoRegistrar) throws PersistenciaException {
@@ -107,6 +136,16 @@ public class FachadaPersistencia implements iFachadaPersistencia{
         }
         
         return quimicoRegistrar;
+    }
+    
+    public Quimico buscarQuimico(int idQuimico) throws PersistenciaException{
+        try{
+            quimicoDAO.buscar(idQuimico);
+        }catch(PersistenciaException e){
+            throw new PersistenciaException(e.getMessage());
+        }
+        
+        return quimicoDAO.buscar(idQuimico);
     }
 
     @Override
@@ -120,6 +159,16 @@ public class FachadaPersistencia implements iFachadaPersistencia{
         return residuoRegistrar;
     }
 
+    public Residuo buscarResiduo(int idResiduo) throws PersistenciaException{
+        try{
+            residuoDAO.buscar(idResiduo);
+        }catch(PersistenciaException e){
+            throw new PersistenciaException(e.getMessage());
+        }
+        
+        return residuoDAO.buscar(idResiduo);
+    }
+    
     @Override
     public ResiduoSolicitud registrar(ResiduoSolicitud residuoSolicitudRegistrar) throws PersistenciaException {
         try{
@@ -131,6 +180,16 @@ public class FachadaPersistencia implements iFachadaPersistencia{
         return residuoSolicitudRegistrar;
     }
 
+    public ResiduoSolicitud buscarResiduoSolicitud(int idResiduoSolicitud) throws PersistenciaException{
+        try{
+            residuoSolicitudDAO.buscar(idResiduoSolicitud);
+        }catch(PersistenciaException e){
+            throw new PersistenciaException(e.getMessage());
+        }
+        
+        return residuoSolicitudDAO.buscar(idResiduoSolicitud);
+    }
+    
     @Override
     public Solicitud registrar(Solicitud solicitudRegistrar) throws PersistenciaException {
         try{
@@ -142,6 +201,16 @@ public class FachadaPersistencia implements iFachadaPersistencia{
         return solicitudRegistrar;
     }
 
+    public Solicitud buscarSolicitud(int idSolicitud) throws PersistenciaException{
+        try{
+            solicitudDAO.buscar(idSolicitud);
+        }catch(PersistenciaException e){
+            throw new PersistenciaException(e.getMessage());
+        }
+        
+        return solicitudDAO.buscar(idSolicitud);
+    }
+    
     @Override
     public Transporte registrar(Transporte transporteRegistrar) throws PersistenciaException {
         try{
@@ -151,6 +220,16 @@ public class FachadaPersistencia implements iFachadaPersistencia{
         }
         
         return transporteRegistrar;
+    }
+    
+    public Transporte buscarTransporte(int idTransporte) throws PersistenciaException{
+        try{
+            transporteDAO.buscar(idTransporte);
+        }catch(PersistenciaException e){
+            throw new PersistenciaException(e.getMessage());
+        }
+        
+        return transporteDAO.buscar(idTransporte);
     }
 
     @Override
@@ -162,6 +241,16 @@ public class FachadaPersistencia implements iFachadaPersistencia{
         }
         
         return trasladoRegistrar;
+    }
+    
+    public Traslado buscarTraslado(int idTraslado) throws PersistenciaException{
+        try{
+            trasladoDAO.buscar(idTraslado);
+        }catch(PersistenciaException e){
+            throw new PersistenciaException(e.getMessage());
+        }
+        
+        return trasladoDAO.buscar(idTraslado);
     }
     
 }

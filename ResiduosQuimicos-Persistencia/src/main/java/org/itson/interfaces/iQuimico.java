@@ -13,4 +13,5 @@ import org.itson.excepciones.PersistenciaException;
  */
 public interface iQuimico {
     public Quimico registrar(Quimico quimicoRegistrar) throws PersistenciaException;
+    public Quimico buscar(int idQuimico) throws PersistenciaException;
 }

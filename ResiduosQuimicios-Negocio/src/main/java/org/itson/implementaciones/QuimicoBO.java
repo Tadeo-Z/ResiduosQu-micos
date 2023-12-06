@@ -34,9 +34,24 @@ public class QuimicoBO implements iQuimicoBO{
         }
     }
     
+    public Quimico buscar(int idQuimico) throws BOException{
+        try{
+            this.validarBuscarQuimico(idQuimico);
+            return persistencia.buscarQuimico(idQuimico);
+        }catch(PersistenciaException | ValidacionesException e){
+            throw new BOException(e.getMessage(), e);
+        }
+    }
+    
     private void validarQuimicoRegistrar(Quimico quimicoValidar) throws ValidacionesException{
         if(quimicoValidar == null){
             throw new ValidacionesException("Quimico a validar es nulo / No hay informacion");
+        }
+    }
+    
+    private void validarBuscarQuimico(int quimicoValidar) throws ValidacionesException{
+        if(quimicoValidar <= 0){
+            throw new ValidacionesException("ID del quimico es menor o igual a 0");
         }
     }
     

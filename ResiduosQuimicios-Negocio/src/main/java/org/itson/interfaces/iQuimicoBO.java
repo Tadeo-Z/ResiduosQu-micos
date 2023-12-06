@@ -15,4 +15,5 @@ public interface iQuimicoBO {
     
     public Quimico registrar(Quimico quimicoRegistrar) throws BOException;
     
+    public Quimico buscar(int idQuimico) throws BOException;
 }

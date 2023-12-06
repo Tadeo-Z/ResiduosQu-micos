@@ -37,4 +37,19 @@ public class ResiduoDAO implements iResiduo{
         
         return residuoRegistrar;
     }
+    
+    public Residuo buscar(int idResiduo) throws PersistenciaException{
+        EntityManager em = emf.createEntityManager();
+        Residuo residuoBuscar = null;
+        
+        try{
+            em.getTransaction().begin();
+            residuoBuscar = em.find(Residuo.class, idResiduo);
+            em.getTransaction().commit();
+        }catch(Exception e){
+            em.getTransaction().rollback();
+        }
+        
+        return residuoBuscar;
+    }
 }

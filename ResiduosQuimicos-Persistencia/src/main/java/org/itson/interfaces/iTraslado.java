@@ -13,4 +13,6 @@ import org.itson.excepciones.PersistenciaException;
  */
 public interface iTraslado {
     public Traslado registrar(Traslado trasladoRegistrar) throws PersistenciaException;
+    
+    public Traslado buscar(int idTraslado) throws PersistenciaException;
 }
