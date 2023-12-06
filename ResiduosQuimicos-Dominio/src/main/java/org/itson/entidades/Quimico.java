@@ -43,8 +43,7 @@ public class Quimico implements Serializable {
         this.nombre = nombre;
     }
 
-    public Quimico(Long id, boolean esPeligroso, String nombre, Residuo residuo) {
-        this.id = id;
+    public Quimico(boolean esPeligroso, String nombre, Residuo residuo) {
         this.esPeligroso = esPeligroso;
         this.nombre = nombre;
         this.residuo = residuo;

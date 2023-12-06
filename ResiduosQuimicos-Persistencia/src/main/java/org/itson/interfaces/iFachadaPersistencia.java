@@ -25,6 +25,8 @@ public interface iFachadaPersistencia {
     
     public Productor registrar(Productor productorRegistrar) throws PersistenciaException;
     
+    public Productor actualizar(Productor productorActualizar) throws PersistenciaException;
+    
     public ProductorResiduo registrar(ProductorResiduo productorResiduoRegistrar) throws PersistenciaException;
     
     public Quimico registrar(Quimico quimicoRegistrar) throws PersistenciaException;

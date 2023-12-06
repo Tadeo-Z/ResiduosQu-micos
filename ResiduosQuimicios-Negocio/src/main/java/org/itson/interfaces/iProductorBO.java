@@ -15,4 +15,5 @@ public interface iProductorBO {
     
     public Productor registrar(Productor productorRegistrar) throws BOException;
     
+    public Productor actualizar(Productor productorActualizar) throws BOException;
 }

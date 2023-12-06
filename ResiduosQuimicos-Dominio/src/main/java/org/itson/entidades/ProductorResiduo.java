@@ -29,7 +29,7 @@ public class ProductorResiduo implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "idProductor")
+    @JoinColumn(name = "idProductor", nullable = true)
     private Productor productor;
 
     @ManyToOne
@@ -43,8 +43,7 @@ public class ProductorResiduo implements Serializable {
         this.id = id;
     }
 
-    public ProductorResiduo(Long id, Productor productor, Residuo residuo) {
-        this.id = id;
+    public ProductorResiduo(Productor productor, Residuo residuo) {
         this.productor = productor;
         this.residuo = residuo;
     }

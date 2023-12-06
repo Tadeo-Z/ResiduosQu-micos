@@ -42,7 +42,7 @@ public class ResiduoSolicitud implements Serializable {
     private UnidadMedida unidadMedida;
 
     @ManyToOne()
-    @JoinColumn(name = "id_solicitud", nullable = false)
+    @JoinColumn(name = "id_solicitud", nullable = true)
     private Solicitud solicitud;
     
     public ResiduoSolicitud() {}
@@ -51,8 +51,7 @@ public class ResiduoSolicitud implements Serializable {
         this.residuo = residuo;
     }
 
-    public ResiduoSolicitud(Long id, Residuo residuo, int cantidad, UnidadMedida unidadMedida, Solicitud solicitud) {
-        this.id = id;
+    public ResiduoSolicitud(Residuo residuo, int cantidad, UnidadMedida unidadMedida, Solicitud solicitud) {
         this.residuo = residuo;
         this.cantidad = cantidad;
         this.unidadMedida = unidadMedida;

@@ -40,8 +40,7 @@ public class Productor implements Serializable {
         this.nombre = nombre;
     }
 
-    public Productor(Long id, String nombre, ProductorResiduo productorResiduo) {
-        this.id = id;
+    public Productor(String nombre, ProductorResiduo productorResiduo) {
         this.nombre = nombre;
         this.productorResiduo = productorResiduo;
     }

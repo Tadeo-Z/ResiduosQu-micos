@@ -34,9 +34,26 @@ public class ProductorBO implements iProductorBO{
         }
     }
     
+    public Productor actualizar(Productor productorActualizar) throws BOException{
+        try{
+            this.validarActualizarProductor(productorActualizar);
+            return persistencia.actualizar(productorActualizar);
+        }catch(PersistenciaException e){
+            throw new BOException(e.getMessage(), e);
+        }catch(ValidacionesException a){
+            throw new BOException(a.getMessage(), a);
+        }
+    }
+    
     private void validarRegistrarProductor(Productor productorValidar) throws ValidacionesException{
         if(productorValidar == null){
             throw new ValidacionesException("Producto a insertar es nulo / No hay informacion");
+        }
+    }
+    
+    private void validarActualizarProductor(Productor productorValidar) throws ValidacionesException{
+        if(productorValidar == null){
+            throw new ValidacionesException("Productor a actualizar es nulo / No hay informacion");
         }
     }
     

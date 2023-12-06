@@ -39,8 +39,7 @@ public class EmpresaTransportista implements Serializable {
         this.nombre = nombre;
     }
 
-    public EmpresaTransportista(Long id, String nombre, List<Transporte> transporte) {
-        this.id = id;
+    public EmpresaTransportista(String nombre, List<Transporte> transporte) {
         this.nombre = nombre;
         this.transporte = transporte;
     }

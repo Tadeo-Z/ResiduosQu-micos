@@ -36,7 +36,7 @@ public class Residuo implements Serializable {
     private int cantidad;
     
     @ManyToOne()
-    @JoinColumn(name = "id_productor_residuo", nullable = false)
+    @JoinColumn(name = "id_productor_residuo", nullable = true)
     private ProductorResiduo productorResiduo;
     
     @OneToMany(mappedBy = "residuo")
@@ -48,8 +48,7 @@ public class Residuo implements Serializable {
         this.codigoResiduo = codigoResiduo;
     }
 
-    public Residuo(Long id, String codigoResiduo, int cantidad, ProductorResiduo productorResiduo, List<Quimico> quimicos) {
-        this.id = id;
+    public Residuo(String codigoResiduo, int cantidad, ProductorResiduo productorResiduo, List<Quimico> quimicos) {
         this.codigoResiduo = codigoResiduo;
         this.cantidad = cantidad;
         this.productorResiduo = productorResiduo;

@@ -31,11 +31,11 @@ public class Transporte implements Serializable {
     private float kilometros;
     
     @ManyToOne()
-    @JoinColumn(name = "id_empresa_transportista", nullable = false)
+    @JoinColumn(name = "id_empresa_transportista", nullable = true)
     private EmpresaTransportista empresaTransportista;
     
     @ManyToOne()
-    @JoinColumn(name = "id_traslado", nullable = false)
+    @JoinColumn(name = "id_traslado", nullable = true)
     private Traslado traslado;
 
     public Transporte() {}
@@ -44,8 +44,7 @@ public class Transporte implements Serializable {
         this.id = id;
     }
 
-    public Transporte(Long id, float kilometros, EmpresaTransportista empresaTransportista, Traslado traslado) {
-        this.id = id;
+    public Transporte(float kilometros, EmpresaTransportista empresaTransportista, Traslado traslado) {
         this.kilometros = kilometros;
         this.empresaTransportista = empresaTransportista;
         this.traslado = traslado;

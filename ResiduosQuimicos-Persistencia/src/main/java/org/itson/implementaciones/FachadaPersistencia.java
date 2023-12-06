@@ -16,6 +16,14 @@ import org.itson.entidades.Traslado;
 import org.itson.excepciones.PersistenciaException;
 import org.itson.interfaces.iEmpresaTransportista;
 import org.itson.interfaces.iFachadaPersistencia;
+import org.itson.interfaces.iProductor;
+import org.itson.interfaces.iProductorResiduo;
+import org.itson.interfaces.iQuimico;
+import org.itson.interfaces.iResiduo;
+import org.itson.interfaces.iResiduoSolicitud;
+import org.itson.interfaces.iSolicitud;
+import org.itson.interfaces.iTransporte;
+import org.itson.interfaces.iTraslado;
 
 /**
  *
@@ -23,15 +31,15 @@ import org.itson.interfaces.iFachadaPersistencia;
  */
 public class FachadaPersistencia implements iFachadaPersistencia{
 
-    private EmpresaTransportistaDAO empresaTransportistaDAO;
-    private ProductorDAO productorDAO;
-    private ProductorResiduoDAO productorResiduoDAO;
-    private QuimicoDAO quimicoDAO;
-    private ResiduoDAO residuoDAO;
-    private ResiduoSolicitudDAO residuoSolicitudDAO;
-    private SolicitudDAO solicitudDAO;
-    private TransporteDAO transporteDAO;
-    private TrasladoDAO trasladoDAO;
+    private iEmpresaTransportista empresaTransportistaDAO = new EmpresaTransportistaDAO();
+    private iProductor productorDAO = new ProductorDAO();
+    private iProductorResiduo productorResiduoDAO = new ProductorResiduoDAO();
+    private iQuimico quimicoDAO = new QuimicoDAO();
+    private iResiduo residuoDAO = new ResiduoDAO();
+    private iResiduoSolicitud residuoSolicitudDAO = new ResiduoSolicitudDAO();
+    private iSolicitud solicitudDAO = new SolicitudDAO();
+    private iTransporte transporteDAO = new TransporteDAO();
+    private iTraslado trasladoDAO = new TrasladoDAO();
 
     public FachadaPersistencia(){}
     
@@ -67,6 +75,16 @@ public class FachadaPersistencia implements iFachadaPersistencia{
         }
         
         return productorRegistrar;
+    }
+    
+    public Productor actualizar(Productor productorActualizar) throws PersistenciaException{
+        try{
+            productorDAO.actualizar(productorActualizar);
+        }catch(PersistenciaException e){
+            throw new PersistenciaException(e.getMessage());
+        }
+        
+        return productorActualizar;
     }
 
     @Override

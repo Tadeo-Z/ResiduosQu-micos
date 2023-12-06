@@ -44,8 +44,7 @@ public class Solicitud implements Serializable {
         this.id = id;
     }
 
-    public Solicitud(Long id, Calendar fechaSolicitud, List<ResiduoSolicitud> residuoSolicitud) {
-        this.id = id;
+    public Solicitud(Calendar fechaSolicitud, List<ResiduoSolicitud> residuoSolicitud) {
         this.fechaSolicitud = fechaSolicitud;
         this.residuoSolicitud = residuoSolicitud;
     }

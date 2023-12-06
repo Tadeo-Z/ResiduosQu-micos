@@ -37,5 +37,19 @@ public class ProductorDAO implements iProductor{
         
         return productorRegistrar;
     }
+
+    @Override
+    public Productor actualizar(Productor productorActualizar) throws PersistenciaException {
+        EntityManager em = emf.createEntityManager();
+        try{
+            em.getTransaction().begin();
+            em.merge(productorActualizar);
+            em.getTransaction().commit();
+        }catch(Exception e){
+            em.getTransaction().rollback();
+        }
+        
+        return productorActualizar;
+    }
     
 }

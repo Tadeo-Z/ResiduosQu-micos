@@ -53,8 +53,7 @@ public class Traslado implements Serializable {
         this.id = id;
     }
 
-    public Traslado(Long id, Calendar fechaLlegada, String trasladoPosterior, String origen, String destino, List<Transporte> transporte) {
-        this.id = id;
+    public Traslado(Calendar fechaLlegada, String trasladoPosterior, String origen, String destino, List<Transporte> transporte) {
         this.fechaLlegada = fechaLlegada;
         this.trasladoPosterior = trasladoPosterior;
         this.origen = origen;
