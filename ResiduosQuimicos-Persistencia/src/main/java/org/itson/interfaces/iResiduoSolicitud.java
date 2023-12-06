@@ -10,9 +10,11 @@ import org.itson.excepciones.PersistenciaException;
 /**
  *
  * @author TADEO
+ * Interfaz que define los métodos de persistencia para la entidad ResiduoSolicitud.
  */
 public interface iResiduoSolicitud {
+
     public ResiduoSolicitud registrar(ResiduoSolicitud solicitudResiduoRegistrar) throws PersistenciaException;
-    
+
     public ResiduoSolicitud buscar(int idResiduoSolicitud) throws PersistenciaException;
 }
