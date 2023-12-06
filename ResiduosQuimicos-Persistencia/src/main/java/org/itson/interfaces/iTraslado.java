@@ -10,9 +10,12 @@ import org.itson.excepciones.PersistenciaException;
 /**
  *
  * @author TADEO
+ *
+ * Interfaz que define los métodos de persistencia para la entidad Traslado.
  */
 public interface iTraslado {
+
     public Traslado registrar(Traslado trasladoRegistrar) throws PersistenciaException;
-    
+
     public Traslado buscar(int idTraslado) throws PersistenciaException;
 }
