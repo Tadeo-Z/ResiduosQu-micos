@@ -10,11 +10,14 @@ package org.itson.GUI;
  */
 public class frmAsignarTrasladosEmpresas extends javax.swing.JFrame {
 
+    frmPrincipal frmPrincipal = new frmPrincipal();
+    
     /**
      * Creates new form frmAsignarTrasladosEmpresas
      */
     public frmAsignarTrasladosEmpresas() {
         initComponents();
+        this.setTitle("Asignar traslados a empresas");
     }
 
     /**
@@ -40,6 +43,7 @@ public class frmAsignarTrasladosEmpresas extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

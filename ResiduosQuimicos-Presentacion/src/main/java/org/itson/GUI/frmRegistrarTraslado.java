@@ -10,11 +10,14 @@ package org.itson.GUI;
  */
 public class frmRegistrarTraslado extends javax.swing.JFrame {
 
+    frmPrincipal frmPrincipal = new frmPrincipal();
+    
     /**
      * Creates new form frmRegistrarTraslado
      */
     public frmRegistrarTraslado() {
         initComponents();
+        this.setTitle("Registrar traslado");
     }
 
     /**
@@ -40,6 +43,7 @@ public class frmRegistrarTraslado extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

@@ -9,12 +9,13 @@ package org.itson.GUI;
  * @author TADEO
  */
 public class frmPrincipal extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form frmPrincipal
      */
     public frmPrincipal() {
         initComponents();
+        this.setTitle("Sistema de residuos peligrosos");
     }
 
     /**
@@ -26,21 +27,110 @@ public class frmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
+        btnRegistrarResiduo = new javax.swing.JButton();
+        btnRegistrarSolicitudTraslado = new javax.swing.JButton();
+        btnAsignarTraslado = new javax.swing.JButton();
+        btnRegistrarTraslado = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        jTextField1.setEditable(false);
+        jTextField1.setBackground(new java.awt.Color(255, 153, 0));
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1.setText("Bienvenidos al sistema de residuos peligrosos");
+
+        btnRegistrarResiduo.setText("Registrar residuo");
+        btnRegistrarResiduo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarResiduoActionPerformed(evt);
+            }
+        });
+
+        btnRegistrarSolicitudTraslado.setText("Registrar solicitud de traslado");
+        btnRegistrarSolicitudTraslado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarSolicitudTrasladoActionPerformed(evt);
+            }
+        });
+
+        btnAsignarTraslado.setText("Asignar traslado");
+        btnAsignarTraslado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarTrasladoActionPerformed(evt);
+            }
+        });
+
+        btnRegistrarTraslado.setText("Registrar traslado");
+        btnRegistrarTraslado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarTrasladoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(216, 216, 216)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnRegistrarTraslado)
+                            .addComponent(btnRegistrarResiduo)
+                            .addComponent(btnAsignarTraslado)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(btnRegistrarSolicitudTraslado)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(btnAsignarTraslado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnRegistrarResiduo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnRegistrarTraslado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnRegistrarSolicitudTraslado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 93, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAsignarTrasladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarTrasladoActionPerformed
+        frmAsignarTrasladosEmpresas asignarTrasladoEmpresa = new frmAsignarTrasladosEmpresas();
+        asignarTrasladoEmpresa.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAsignarTrasladoActionPerformed
+
+    private void btnRegistrarResiduoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarResiduoActionPerformed
+        frmRegistrarResiduo registrarResiduo = new frmRegistrarResiduo();
+        registrarResiduo.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRegistrarResiduoActionPerformed
+
+    private void btnRegistrarTrasladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarTrasladoActionPerformed
+        frmRegistrarTraslado registrarTraslado = new frmRegistrarTraslado();
+        registrarTraslado.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRegistrarTrasladoActionPerformed
+
+    private void btnRegistrarSolicitudTrasladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarSolicitudTrasladoActionPerformed
+        frmRegistrarSolicitarTraslado registrarSolicitudTraslado = new frmRegistrarSolicitarTraslado();
+        registrarSolicitudTraslado.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRegistrarSolicitudTrasladoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +168,10 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAsignarTraslado;
+    private javax.swing.JButton btnRegistrarResiduo;
+    private javax.swing.JButton btnRegistrarSolicitudTraslado;
+    private javax.swing.JButton btnRegistrarTraslado;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

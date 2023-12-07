@@ -6,6 +6,7 @@ package org.itson.entidades;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,7 +49,7 @@ public class Residuo implements Serializable {
     private ProductorResiduo productorResiduo;
     
     /** Relación One-to-Many con la entidad Quimico. */
-    @OneToMany(mappedBy = "residuo")
+    @OneToMany(mappedBy = "residuo", cascade = CascadeType.PERSIST)
     private List<Quimico> quimicos;
 
     /** Constructor por defecto. */

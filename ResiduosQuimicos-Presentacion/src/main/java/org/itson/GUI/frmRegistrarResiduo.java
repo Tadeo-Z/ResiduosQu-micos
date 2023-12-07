@@ -4,17 +4,63 @@
  */
 package org.itson.GUI;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.itson.entidades.Quimico;
+import org.itson.entidades.Residuo;
+import org.itson.excepciones.BOException;
+import org.itson.implementaciones.QuimicoBO;
+import org.itson.implementaciones.ResiduoBO;
+
 /**
  *
  * @author TADEO
  */
 public class frmRegistrarResiduo extends javax.swing.JFrame {
 
+    frmPrincipal frmPrincipal = new frmPrincipal();
+    private QuimicoBO quimicoBO;
+    private ResiduoBO residuoBO;
+    private Residuo residuo;
+
     /**
      * Creates new form frmRegistrarResiduo
      */
     public frmRegistrarResiduo() {
         initComponents();
+        this.setTitle("Registrar residuo");
+        this.quimicoBO = new QuimicoBO();
+        this.residuoBO = new ResiduoBO();
+        this.residuo = new Residuo();
+        this.cargarDatosEnTabla();
+    }
+
+    /**
+     * Carga los datos de los quimicos en la tabla
+     */
+    public void cargarDatosEnTabla() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("esPeligroso");
+        model.addColumn("nombre");
+
+        try {
+            List<Quimico> quimicos = quimicoBO.obtenerTodosLosQuimicos();
+
+            for (Quimico quimico : quimicos) {
+                Object[] rowData = new Object[]{
+                    quimico.isEsPeligroso(),
+                    quimico.getNombre()
+                };
+
+                model.addRow(rowData);
+            }
+
+            tablaQuimicos.setModel(model);
+        } catch (BOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -27,11 +73,16 @@ public class frmRegistrarResiduo extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaQuimicos = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JTextField();
+        btnRegistrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaQuimicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -42,26 +93,91 @@ public class frmRegistrarResiduo extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaQuimicos);
+
+        jLabel1.setText("Codigo:");
+
+        jLabel2.setText("Cantidad:");
+
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(195, 195, 195)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                            .addComponent(txtCantidad)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(258, 258, 258)
+                        .addComponent(btnRegistrar)))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 280, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(83, 83, 83)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnRegistrar)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        try {
+            int[] indicesQuimicos = tablaQuimicos.getSelectedRows();
+
+            List<Quimico> quimicosSeleccionados = new ArrayList<>();
+
+            for (int indice : indicesQuimicos) {
+                boolean esPeligroso = (boolean) tablaQuimicos.getValueAt(indice, 0);
+                String nombre = (String) tablaQuimicos.getValueAt(indice, 1);
+
+                Quimico quimico = new Quimico();
+                quimico.setEsPeligroso(esPeligroso);
+                quimico.setNombre(nombre);
+
+                quimicosSeleccionados.add(quimico);
+            }
+
+            residuo.setCodigoResiduo(txtCodigo.getText());
+            residuo.setCantidad(Integer.parseInt(txtCantidad.getText()));
+            residuo.setProductorResiduo(null);
+            residuo.setQuimicos(quimicosSeleccionados);
+            residuoBO.registrar(residuo);
+            JOptionPane.showMessageDialog(null, "Residuo registrado con exito");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -99,7 +215,12 @@ public class frmRegistrarResiduo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaQuimicos;
+    private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
 }
