@@ -4,6 +4,7 @@
  */
 package org.itson.interfaces;
 
+import java.util.List;
 import org.itson.entidades.Quimico;
 import org.itson.excepciones.BOException;
 
@@ -37,4 +38,12 @@ public interface iQuimicoBO {
      *                     posibles excepciones específicas.
      */
     public Quimico buscar(int idQuimico) throws BOException;
+    
+    /**
+     * Busca todos los quimicos registrados en la BD
+     * @return Todos los quimicos registrados en la base de datos
+     * @throws BOException Si hay un problema durante el proceso de busqueda, encapsulado
+     * o de validaciones.
+     */
+    public List<Quimico> obtenerTodosLosQuimicos() throws BOException;
 }

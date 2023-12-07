@@ -4,8 +4,10 @@
  */
 package org.itson.implementaciones;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import org.itson.entidades.Traslado;
 import org.itson.excepciones.PersistenciaException;
 import org.itson.interfaces.iTraslado;
@@ -69,5 +71,26 @@ public class TrasladoDAO implements iTraslado {
         }
 
         return trasladoBuscar;
+    }
+    
+    /**
+     * Obtiene todos los traslados registrados en la base de datos.
+     * @return Lista de todos los traslados registrados en la base de datos.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    public List<Traslado> obtenerTodosLosTraslados() throws PersistenciaException{
+        EntityManager em = emf.createEntityManager();
+        List<Traslado> traslados = null;
+        
+        try{
+            em.getTransaction().begin();
+            TypedQuery<Traslado> query = em.createQuery("SELECT t FROM Traslado t", Traslado.class);
+            traslados = query.getResultList();
+            em.getTransaction().commit();
+        }catch(Exception e){
+            em.getTransaction().rollback();
+        }
+        
+        return traslados;
     }
 }

@@ -4,6 +4,7 @@
  */
 package org.itson.implementaciones;
 
+import java.util.List;
 import org.itson.entidades.Traslado;
 import org.itson.excepciones.BOException;
 import org.itson.excepciones.PersistenciaException;
@@ -81,6 +82,20 @@ public class TrasladoBO implements iTrasladoBO {
         } catch (PersistenciaException | ValidacionesException e) {
             // Propaga PersistenciaException o ValidacionesException como BOException
             throw new BOException(e.getMessage(), e);
+        }
+    }
+    
+    /**
+     * Obtiene todos los traslados registrados en la BD.
+     * @return Lista de todos los traslados de la BD.
+     * @throws BOException Si hay un problema durante el proceso de busqueda,
+     * encapsulamiento o persistenica.
+     */
+    public List<Traslado> obtenerTodosLosTraslados() throws BOException{
+        try{
+            return persistencia.obtenerTodosLosTraslados();
+        }catch(PersistenciaException e){
+            throw new BOException(e.getMessage());
         }
     }
 

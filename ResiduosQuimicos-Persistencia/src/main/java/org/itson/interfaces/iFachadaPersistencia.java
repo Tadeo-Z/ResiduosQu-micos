@@ -4,6 +4,7 @@
  */
 package org.itson.interfaces;
 
+import java.util.List;
 import org.itson.entidades.EmpresaTransportista;
 import org.itson.entidades.Productor;
 import org.itson.entidades.ProductorResiduo;
@@ -40,10 +41,14 @@ public interface iFachadaPersistencia {
 
     public Quimico buscarQuimico(int idQuimico) throws PersistenciaException;
 
+    public List<Quimico> obtenerTodosLosQuimicos() throws PersistenciaException;
+    
     public Residuo registrar(Residuo residuoRegistrar) throws PersistenciaException;
 
     public Residuo buscarResiduo(int idResiduo) throws PersistenciaException;
 
+    public List<Residuo> obtenerTodosLosResiduos() throws PersistenciaException;
+    
     public ResiduoSolicitud registrar(ResiduoSolicitud residuoSolicitudRegistrar) throws PersistenciaException;
 
     public ResiduoSolicitud buscarResiduoSolicitud(int idResiduoSolicitud) throws PersistenciaException;
@@ -52,6 +57,8 @@ public interface iFachadaPersistencia {
 
     public Solicitud buscarSolicitud(int idSolicitud) throws PersistenciaException;
 
+    public List<Solicitud> obtenerTodasLasSolicitudes() throws PersistenciaException;
+    
     public Transporte registrar(Transporte transporteRegistrar) throws PersistenciaException;
 
     public Transporte buscarTransporte(int idTransporte) throws PersistenciaException;
@@ -59,4 +66,6 @@ public interface iFachadaPersistencia {
     public Traslado registrar(Traslado trasladoRegistrar) throws PersistenciaException;
 
     public Traslado buscarTraslado(int idTraslado) throws PersistenciaException;
+    
+    public List<Traslado> obtenerTodosLosTraslados() throws PersistenciaException;
 }

@@ -4,6 +4,7 @@
  */
 package org.itson.implementaciones;
 
+import java.util.List;
 import org.itson.entidades.Quimico;
 import org.itson.excepciones.BOException;
 import org.itson.excepciones.PersistenciaException;
@@ -78,6 +79,20 @@ public class QuimicoBO implements iQuimicoBO {
         } catch (PersistenciaException | ValidacionesException e) {
             // Propaga PersistenciaException o ValidacionesException como BOException
             throw new BOException(e.getMessage(), e);
+        }
+    }
+    
+    /**
+     * Obtiene todos los quimicos registrados en la BD
+     * @return Lista de todos los quimicos registrados
+     * @throws BOException Si hay un problema durante el proceso de busqueda,
+     * encapsulamiento o persistencia.
+     */
+    public List<Quimico> obtenerTodosLosQuimicos() throws BOException{
+        try{
+            return persistencia.obtenerTodosLosQuimicos();
+        }catch(PersistenciaException e){
+            throw new BOException(e.getMessage());
         }
     }
 

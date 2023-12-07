@@ -4,6 +4,7 @@
  */
 package org.itson.interfaces;
 
+import java.util.List;
 import org.itson.entidades.Traslado;
 import org.itson.excepciones.BOException;
 
@@ -35,4 +36,6 @@ public interface iTrasladoBO {
      *                     posibles excepciones específicas.
      */
     public Traslado buscar(int idTraslado) throws BOException;
+    
+    public List<Traslado> obtenerTodosLosTraslados() throws BOException;
 }

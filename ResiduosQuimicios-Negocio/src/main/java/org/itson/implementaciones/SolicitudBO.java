@@ -4,6 +4,7 @@
  */
 package org.itson.implementaciones;
 
+import java.util.List;
 import org.itson.entidades.Solicitud;
 import org.itson.excepciones.BOException;
 import org.itson.excepciones.PersistenciaException;
@@ -81,6 +82,20 @@ public class SolicitudBO implements iSolicitudBO {
         } catch (PersistenciaException | ValidacionesException e) {
             // Propaga PersistenciaException o ValidacionesException como BOException
             throw new BOException(e.getMessage(), e);
+        }
+    }
+    
+    /**
+     * Obtiene todas las solicitudes registradas en la BD
+     * @return Lista de todas las solicitudes registradas
+     * @throws BOException Si hay un problema durante el proceso de busqueda,
+     * encapsulamiento o persistencia.
+     */
+    public List<Solicitud> obtenerTodasLasSolicitudes() throws BOException{
+        try{
+            return persistencia.obtenerTodasLasSolicitudes();
+        }catch(PersistenciaException e){
+            throw new BOException(e.getMessage());
         }
     }
 

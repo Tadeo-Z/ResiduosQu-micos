@@ -4,6 +4,7 @@
  */
 package org.itson.implementaciones;
 
+import java.util.List;
 import org.itson.entidades.Residuo;
 import org.itson.excepciones.BOException;
 import org.itson.excepciones.PersistenciaException;
@@ -87,6 +88,20 @@ public class ResiduoBO implements iResiduoBO {
         }
     }
 
+    /**
+     * Obtiene todos los residuos registrados en la BD
+     * @return Lista de todos los residuos registrados
+     * @throws BOException Si hay un problema durante el proceso de busqueda,
+     * encapsulamiento o persistencia.
+     */
+    public List<Residuo> obtenerTodosLosResiduos() throws BOException{
+        try{
+            return persistencia.obtenerTodosLosResiduos();
+        }catch(PersistenciaException e){
+            throw new BOException(e.getMessage());
+        }
+    }
+    
     /**
      * Valida el objeto Residuo antes del registro.
      * 

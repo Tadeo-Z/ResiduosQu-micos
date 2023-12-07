@@ -4,6 +4,7 @@
  */
 package org.itson.implementaciones;
 
+import java.util.List;
 import org.itson.entidades.EmpresaTransportista;
 import org.itson.entidades.Productor;
 import org.itson.entidades.ProductorResiduo;
@@ -26,9 +27,10 @@ import org.itson.interfaces.iTransporte;
 import org.itson.interfaces.iTraslado;
 
 /**
- * Clase que implementa la interfaz iFachadaPersistencia y actúa como fachada para interactuar con las clases DAO.
- * La fachada proporciona métodos para realizar operaciones CRUD en las entidades del sistema.
- * 
+ * Clase que implementa la interfaz iFachadaPersistencia y actúa como fachada
+ * para interactuar con las clases DAO. La fachada proporciona métodos para
+ * realizar operaciones CRUD en las entidades del sistema.
+ *
  * @author TADEO
  */
 public class FachadaPersistencia implements iFachadaPersistencia {
@@ -45,23 +47,32 @@ public class FachadaPersistencia implements iFachadaPersistencia {
     private iTraslado trasladoDAO = new TrasladoDAO();
 
     /**
-     * Constructor por defecto que inicializa las instancias de las interfaces DAO con las implementaciones por defecto.
+     * Constructor por defecto que inicializa las instancias de las interfaces
+     * DAO con las implementaciones por defecto.
      */
-    public FachadaPersistencia() {}
+    public FachadaPersistencia() {
+    }
 
     /**
-     * Constructor que permite inyectar instancias específicas de las interfaces DAO.
-     * Útil para la inyección de dependencias en pruebas unitarias.
+     * Constructor que permite inyectar instancias específicas de las interfaces
+     * DAO. Útil para la inyección de dependencias en pruebas unitarias.
      *
-     * @param empresaTransportistaDAO      Instancia de la interfaz iEmpresaTransportista para DAO de EmpresaTransportista.
-     * @param productorDAO                 Instancia de la interfaz iProductor para DAO de Productor.
-     * @param productorResiduoDAO          Instancia de la interfaz iProductorResiduo para DAO de ProductorResiduo.
-     * @param quimicoDAO                   Instancia de la interfaz iQuimico para DAO de Quimico.
-     * @param residuoDAO                   Instancia de la interfaz iResiduo para DAO de Residuo.
-     * @param residuoSolicitudDAO          Instancia de la interfaz iResiduoSolicitud para DAO de ResiduoSolicitud.
-     * @param solicitudDAO                 Instancia de la interfaz iSolicitud para DAO de Solicitud.
-     * @param transporteDAO                Instancia de la interfaz iTransporte para DAO de Transporte.
-     * @param trasladoDAO                  Instancia de la interfaz iTraslado para DAO de Traslado.
+     * @param empresaTransportistaDAO Instancia de la interfaz
+     * iEmpresaTransportista para DAO de EmpresaTransportista.
+     * @param productorDAO Instancia de la interfaz iProductor para DAO de
+     * Productor.
+     * @param productorResiduoDAO Instancia de la interfaz iProductorResiduo
+     * para DAO de ProductorResiduo.
+     * @param quimicoDAO Instancia de la interfaz iQuimico para DAO de Quimico.
+     * @param residuoDAO Instancia de la interfaz iResiduo para DAO de Residuo.
+     * @param residuoSolicitudDAO Instancia de la interfaz iResiduoSolicitud
+     * para DAO de ResiduoSolicitud.
+     * @param solicitudDAO Instancia de la interfaz iSolicitud para DAO de
+     * Solicitud.
+     * @param transporteDAO Instancia de la interfaz iTransporte para DAO de
+     * Transporte.
+     * @param trasladoDAO Instancia de la interfaz iTraslado para DAO de
+     * Traslado.
      */
     public FachadaPersistencia(
             iEmpresaTransportista empresaTransportistaDAO, iProductor productorDAO,
@@ -79,8 +90,8 @@ public class FachadaPersistencia implements iFachadaPersistencia {
         this.transporteDAO = transporteDAO;
         this.trasladoDAO = trasladoDAO;
     }
-    
-   /**
+
+    /**
      * Registra una nueva EmpresaTransportista en la base de datos.
      *
      * @param empresaTransportistaRegistrar La EmpresaTransportista a registrar.
@@ -101,7 +112,8 @@ public class FachadaPersistencia implements iFachadaPersistencia {
     /**
      * Busca una EmpresaTransportista en la base de datos por su identificador.
      *
-     * @param idEmpresaTransportista El identificador de la EmpresaTransportista a buscar.
+     * @param idEmpresaTransportista El identificador de la EmpresaTransportista
+     * a buscar.
      * @return La EmpresaTransportista encontrada.
      * @throws PersistenciaException Si hay un error en la capa de persistencia.
      */
@@ -168,248 +180,303 @@ public class FachadaPersistencia implements iFachadaPersistencia {
     }
 
     /**
- * Registra un nuevo ProductorResiduo en la base de datos.
- *
- * @param productorResiduoRegistrar El ProductorResiduo a registrar.
- * @return El ProductorResiduo registrado.
- * @throws PersistenciaException Si hay un error en la capa de persistencia.
- */
-@Override
-public ProductorResiduo registrar(ProductorResiduo productorResiduoRegistrar) throws PersistenciaException {
-    try {
-        productorResiduoDAO.registrar(productorResiduoRegistrar);
-    } catch (PersistenciaException e) {
-        throw new PersistenciaException(e.getMessage());
+     * Registra un nuevo ProductorResiduo en la base de datos.
+     *
+     * @param productorResiduoRegistrar El ProductorResiduo a registrar.
+     * @return El ProductorResiduo registrado.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    @Override
+    public ProductorResiduo registrar(ProductorResiduo productorResiduoRegistrar) throws PersistenciaException {
+        try {
+            productorResiduoDAO.registrar(productorResiduoRegistrar);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
+        }
+
+        return productorResiduoRegistrar;
     }
 
-    return productorResiduoRegistrar;
-}
+    /**
+     * Busca un ProductorResiduo en la base de datos por su identificador.
+     *
+     * @param idProductorResiduo El identificador del ProductorResiduo a buscar.
+     * @return El ProductorResiduo encontrado.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    public ProductorResiduo buscarProductorResiduo(int idProductorResiduo) throws PersistenciaException {
+        try {
+            productorResiduoDAO.buscar(idProductorResiduo);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
+        }
 
-/**
- * Busca un ProductorResiduo en la base de datos por su identificador.
- *
- * @param idProductorResiduo El identificador del ProductorResiduo a buscar.
- * @return El ProductorResiduo encontrado.
- * @throws PersistenciaException Si hay un error en la capa de persistencia.
- */
-public ProductorResiduo buscarProductorResiduo(int idProductorResiduo) throws PersistenciaException {
-    try {
-        productorResiduoDAO.buscar(idProductorResiduo);
-    } catch (PersistenciaException e) {
-        throw new PersistenciaException(e.getMessage());
+        return productorResiduoDAO.buscar(idProductorResiduo);
     }
 
-    return productorResiduoDAO.buscar(idProductorResiduo);
-}
+    /**
+     * Registra un nuevo Quimico en la base de datos.
+     *
+     * @param quimicoRegistrar El Quimico a registrar.
+     * @return El Quimico registrado.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    @Override
+    public Quimico registrar(Quimico quimicoRegistrar) throws PersistenciaException {
+        try {
+            quimicoDAO.registrar(quimicoRegistrar);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
+        }
 
-/**
- * Registra un nuevo Quimico en la base de datos.
- *
- * @param quimicoRegistrar El Quimico a registrar.
- * @return El Quimico registrado.
- * @throws PersistenciaException Si hay un error en la capa de persistencia.
- */
-@Override
-public Quimico registrar(Quimico quimicoRegistrar) throws PersistenciaException {
-    try {
-        quimicoDAO.registrar(quimicoRegistrar);
-    } catch (PersistenciaException e) {
-        throw new PersistenciaException(e.getMessage());
+        return quimicoRegistrar;
     }
 
-    return quimicoRegistrar;
-}
+    /**
+     * Busca un Quimico en la base de datos por su identificador.
+     *
+     * @param idQuimico El identificador del Quimico a buscar.
+     * @return El Quimico encontrado.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    public Quimico buscarQuimico(int idQuimico) throws PersistenciaException {
+        try {
+            quimicoDAO.buscar(idQuimico);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
+        }
 
-/**
- * Busca un Quimico en la base de datos por su identificador.
- *
- * @param idQuimico El identificador del Quimico a buscar.
- * @return El Quimico encontrado.
- * @throws PersistenciaException Si hay un error en la capa de persistencia.
- */
-public Quimico buscarQuimico(int idQuimico) throws PersistenciaException {
-    try {
-        quimicoDAO.buscar(idQuimico);
-    } catch (PersistenciaException e) {
-        throw new PersistenciaException(e.getMessage());
+        return quimicoDAO.buscar(idQuimico);
     }
 
-    return quimicoDAO.buscar(idQuimico);
-}
+    /**
+     * Busca todos los quimicos registrados en la base de datos.
+     * @return Lista de todos los quimicos registrados.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    public List<Quimico> obtenerTodosLosQuimicos() throws PersistenciaException{
+        try{
+            quimicoDAO.obtenerTodosLosQuimicos();
+        }catch(PersistenciaException e){
+            throw new PersistenciaException(e.getMessage());
+        }
+        
+        return quimicoDAO.obtenerTodosLosQuimicos();
+    }
+    
+    /**
+     * Registra un nuevo Residuo en la base de datos.
+     *
+     * @param residuoRegistrar El Residuo a registrar.
+     * @return El Residuo registrado.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    @Override
+    public Residuo registrar(Residuo residuoRegistrar) throws PersistenciaException {
+        try {
+            residuoDAO.registrar(residuoRegistrar);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
+        }
 
-/**
- * Registra un nuevo Residuo en la base de datos.
- *
- * @param residuoRegistrar El Residuo a registrar.
- * @return El Residuo registrado.
- * @throws PersistenciaException Si hay un error en la capa de persistencia.
- */
-@Override
-public Residuo registrar(Residuo residuoRegistrar) throws PersistenciaException {
-    try {
-        residuoDAO.registrar(residuoRegistrar);
-    } catch (PersistenciaException e) {
-        throw new PersistenciaException(e.getMessage());
+        return residuoRegistrar;
     }
 
-    return residuoRegistrar;
-}
+    /**
+     * Busca un Residuo en la base de datos por su identificador.
+     *
+     * @param idResiduo El identificador del Residuo a buscar.
+     * @return El Residuo encontrado.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    public Residuo buscarResiduo(int idResiduo) throws PersistenciaException {
+        try {
+            residuoDAO.buscar(idResiduo);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
+        }
 
-/**
- * Busca un Residuo en la base de datos por su identificador.
- *
- * @param idResiduo El identificador del Residuo a buscar.
- * @return El Residuo encontrado.
- * @throws PersistenciaException Si hay un error en la capa de persistencia.
- */
-public Residuo buscarResiduo(int idResiduo) throws PersistenciaException {
-    try {
-        residuoDAO.buscar(idResiduo);
-    } catch (PersistenciaException e) {
-        throw new PersistenciaException(e.getMessage());
+        return residuoDAO.buscar(idResiduo);
     }
 
-    return residuoDAO.buscar(idResiduo);
-}
+    /**
+     * Obtiene todos los residuos registrados en la base de datos.
+     * @return Lista de todos los residuos registrados en la base de datos
+     * @throws PersistenciaException Si hay un error en la capa de persistencia
+     */
+    public List<Residuo> obtenerTodosLosResiduos() throws PersistenciaException{
+        try{
+            residuoDAO.obtenerTodosLosResiduos();
+        }catch(PersistenciaException e){
+            throw new PersistenciaException(e.getMessage());
+        }
+        
+        return residuoDAO.obtenerTodosLosResiduos();
+    }
+    
+    /**
+     * Registra una nueva ResiduoSolicitud en la base de datos.
+     *
+     * @param residuoSolicitudRegistrar La ResiduoSolicitud a registrar.
+     * @return La ResiduoSolicitud registrada.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    @Override
+    public ResiduoSolicitud registrar(ResiduoSolicitud residuoSolicitudRegistrar) throws PersistenciaException {
+        try {
+            residuoSolicitudDAO.registrar(residuoSolicitudRegistrar);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
+        }
 
-/**
- * Registra una nueva ResiduoSolicitud en la base de datos.
- *
- * @param residuoSolicitudRegistrar La ResiduoSolicitud a registrar.
- * @return La ResiduoSolicitud registrada.
- * @throws PersistenciaException Si hay un error en la capa de persistencia.
- */
-@Override
-public ResiduoSolicitud registrar(ResiduoSolicitud residuoSolicitudRegistrar) throws PersistenciaException {
-    try {
-        residuoSolicitudDAO.registrar(residuoSolicitudRegistrar);
-    } catch (PersistenciaException e) {
-        throw new PersistenciaException(e.getMessage());
+        return residuoSolicitudRegistrar;
     }
 
-    return residuoSolicitudRegistrar;
-}
+    /**
+     * Busca una ResiduoSolicitud en la base de datos por su identificador.
+     *
+     * @param idResiduoSolicitud El identificador de la ResiduoSolicitud a
+     * buscar.
+     * @return La ResiduoSolicitud encontrada.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    public ResiduoSolicitud buscarResiduoSolicitud(int idResiduoSolicitud) throws PersistenciaException {
+        try {
+            residuoSolicitudDAO.buscar(idResiduoSolicitud);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
+        }
 
-/**
- * Busca una ResiduoSolicitud en la base de datos por su identificador.
- *
- * @param idResiduoSolicitud El identificador de la ResiduoSolicitud a buscar.
- * @return La ResiduoSolicitud encontrada.
- * @throws PersistenciaException Si hay un error en la capa de persistencia.
- */
-public ResiduoSolicitud buscarResiduoSolicitud(int idResiduoSolicitud) throws PersistenciaException {
-    try {
-        residuoSolicitudDAO.buscar(idResiduoSolicitud);
-    } catch (PersistenciaException e) {
-        throw new PersistenciaException(e.getMessage());
+        return residuoSolicitudDAO.buscar(idResiduoSolicitud);
     }
 
-    return residuoSolicitudDAO.buscar(idResiduoSolicitud);
-}
+    /**
+     * Registra una nueva Solicitud en la base de datos.
+     *
+     * @param solicitudRegistrar La Solicitud a registrar.
+     * @return La Solicitud registrada.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    @Override
+    public Solicitud registrar(Solicitud solicitudRegistrar) throws PersistenciaException {
+        try {
+            solicitudDAO.registrar(solicitudRegistrar);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
+        }
 
-/**
- * Registra una nueva Solicitud en la base de datos.
- *
- * @param solicitudRegistrar La Solicitud a registrar.
- * @return La Solicitud registrada.
- * @throws PersistenciaException Si hay un error en la capa de persistencia.
- */
-@Override
-public Solicitud registrar(Solicitud solicitudRegistrar) throws PersistenciaException {
-    try {
-        solicitudDAO.registrar(solicitudRegistrar);
-    } catch (PersistenciaException e) {
-        throw new PersistenciaException(e.getMessage());
+        return solicitudRegistrar;
     }
 
-    return solicitudRegistrar;
-}
+    /**
+     * Busca una Solicitud en la base de datos por su identificador.
+     *
+     * @param idSolicitud El identificador de la Solicitud a buscar.
+     * @return La Solicitud encontrada.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    public Solicitud buscarSolicitud(int idSolicitud) throws PersistenciaException {
+        try {
+            solicitudDAO.buscar(idSolicitud);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
+        }
 
-/**
- * Busca una Solicitud en la base de datos por su identificador.
- *
- * @param idSolicitud El identificador de la Solicitud a buscar.
- * @return La Solicitud encontrada.
- * @throws PersistenciaException Si hay un error en la capa de persistencia.
- */
-public Solicitud buscarSolicitud(int idSolicitud) throws PersistenciaException {
-    try {
-        solicitudDAO.buscar(idSolicitud);
-    } catch (PersistenciaException e) {
-        throw new PersistenciaException(e.getMessage());
+        return solicitudDAO.buscar(idSolicitud);
     }
 
-    return solicitudDAO.buscar(idSolicitud);
-}
+    public List<Solicitud> obtenerTodasLasSolicitudes() throws PersistenciaException{
+        try{
+            solicitudDAO.obtenerTodasLasSolicitudes();
+        }catch(PersistenciaException e){
+            throw new PersistenciaException(e.getMessage());
+        }
+        
+        return solicitudDAO.obtenerTodasLasSolicitudes();
+    }
+    
+    /**
+     * Registra un nuevo Transporte en la base de datos.
+     *
+     * @param transporteRegistrar El Transporte a registrar.
+     * @return El Transporte registrado.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    @Override
+    public Transporte registrar(Transporte transporteRegistrar) throws PersistenciaException {
+        try {
+            transporteDAO.registrar(transporteRegistrar);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
+        }
 
-/**
- * Registra un nuevo Transporte en la base de datos.
- *
- * @param transporteRegistrar El Transporte a registrar.
- * @return El Transporte registrado.
- * @throws PersistenciaException Si hay un error en la capa de persistencia.
- */
-@Override
-public Transporte registrar(Transporte transporteRegistrar) throws PersistenciaException {
-    try {
-        transporteDAO.registrar(transporteRegistrar);
-    } catch (PersistenciaException e) {
-        throw new PersistenciaException(e.getMessage());
+        return transporteRegistrar;
     }
 
-    return transporteRegistrar;
-}
+    /**
+     * Busca un Transporte en la base de datos por su identificador.
+     *
+     * @param idTransporte El identificador del Transporte a buscar.
+     * @return El Transporte encontrado.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    public Transporte buscarTransporte(int idTransporte) throws PersistenciaException {
+        try {
+            transporteDAO.buscar(idTransporte);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
+        }
 
-/**
- * Busca un Transporte en la base de datos por su identificador.
- *
- * @param idTransporte El identificador del Transporte a buscar.
- * @return El Transporte encontrado.
- * @throws PersistenciaException Si hay un error en la capa de persistencia.
- */
-public Transporte buscarTransporte(int idTransporte) throws PersistenciaException {
-    try {
-        transporteDAO.buscar(idTransporte);
-    } catch (PersistenciaException e) {
-        throw new PersistenciaException(e.getMessage());
+        return transporteDAO.buscar(idTransporte);
     }
 
-    return transporteDAO.buscar(idTransporte);
-}
+    /**
+     * Registra un nuevo Traslado en la base de datos.
+     *
+     * @param trasladoRegistrar El Traslado a registrar.
+     * @return El Traslado registrado.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    @Override
+    public Traslado registrar(Traslado trasladoRegistrar) throws PersistenciaException {
+        try {
+            trasladoDAO.registrar(trasladoRegistrar);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
+        }
 
-/**
- * Registra un nuevo Traslado en la base de datos.
- *
- * @param trasladoRegistrar El Traslado a registrar.
- * @return El Traslado registrado.
- * @throws PersistenciaException Si hay un error en la capa de persistencia.
- */
-@Override
-public Traslado registrar(Traslado trasladoRegistrar) throws PersistenciaException {
-    try {
-        trasladoDAO.registrar(trasladoRegistrar);
-    } catch (PersistenciaException e) {
-        throw new PersistenciaException(e.getMessage());
+        return trasladoRegistrar;
     }
 
-    return trasladoRegistrar;
-}
+    /**
+     * Busca un Traslado en la base de datos por su identificador.
+     *
+     * @param idTraslado El identificador del Traslado a buscar.
+     * @return El Traslado encontrado.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    public Traslado buscarTraslado(int idTraslado) throws PersistenciaException {
+        try {
+            trasladoDAO.buscar(idTraslado);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
+        }
 
-/**
- * Busca un Traslado en la base de datos por su identificador.
- *
- * @param idTraslado El identificador del Traslado a buscar.
- * @return El Traslado encontrado.
- * @throws PersistenciaException Si hay un error en la capa de persistencia.
- */
-public Traslado buscarTraslado(int idTraslado) throws PersistenciaException {
-    try {
-        trasladoDAO.buscar(idTraslado);
-    } catch (PersistenciaException e) {
-        throw new PersistenciaException(e.getMessage());
+        return trasladoDAO.buscar(idTraslado);
     }
-
-    return trasladoDAO.buscar(idTraslado);
+    
+    /**
+     * Obtiene todos los traslados de la base de datos
+     * @return Lista de todos los traslados registrados
+     * @throws PersistenciaException Si hay un error de persistencia.
+     */
+    public List<Traslado> obtenerTodosLosTraslados() throws PersistenciaException{
+        try{
+            trasladoDAO.obtenerTodosLosTraslados();
+        }catch(PersistenciaException e){
+            throw new PersistenciaException(e.getMessage());
+        }
+        
+        return trasladoDAO.obtenerTodosLosTraslados();
+    }
 }
-}
-

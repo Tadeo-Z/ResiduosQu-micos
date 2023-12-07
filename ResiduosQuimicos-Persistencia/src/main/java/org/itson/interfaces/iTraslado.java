@@ -4,6 +4,7 @@
  */
 package org.itson.interfaces;
 
+import java.util.List;
 import org.itson.entidades.Traslado;
 import org.itson.excepciones.PersistenciaException;
 
@@ -18,4 +19,6 @@ public interface iTraslado {
     public Traslado registrar(Traslado trasladoRegistrar) throws PersistenciaException;
 
     public Traslado buscar(int idTraslado) throws PersistenciaException;
+    
+    public List<Traslado> obtenerTodosLosTraslados() throws PersistenciaException;
 }

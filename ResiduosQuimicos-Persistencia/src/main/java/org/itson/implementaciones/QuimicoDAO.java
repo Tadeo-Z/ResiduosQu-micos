@@ -4,8 +4,10 @@
  */
 package org.itson.implementaciones;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import org.itson.conexion.Conexion;
 import org.itson.entidades.Quimico;
 import org.itson.excepciones.PersistenciaException;
@@ -77,5 +79,26 @@ public class QuimicoDAO implements iQuimico {
         }
 
         return quimicoBuscar;
+    }
+    
+    /**
+     * Obtiene todos los quimicos registrados en la base de datos.
+     * @return Lista de todos los quimicos registrados.
+     * @throws PersistenciaException Si hay un error en la capa de persistencia.
+     */
+    public List<Quimico> obtenerTodosLosQuimicos() throws PersistenciaException{
+        EntityManager em = emf.createEntityManager();
+        List<Quimico> quimicos = null;
+        
+        try{
+            em.getTransaction().begin();
+            TypedQuery<Quimico> query = em.createQuery("SELECT q FROM Quimico q", Quimico.class);
+            quimicos = query.getResultList();
+            em.getTransaction().commit();
+        }catch(Exception e){
+            em.getTransaction().rollback();
+        }
+        
+        return quimicos;
     }
 }

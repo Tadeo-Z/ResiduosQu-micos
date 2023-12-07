@@ -4,6 +4,7 @@
  */
 package org.itson.interfaces;
 
+import java.util.List;
 import org.itson.entidades.Residuo;
 import org.itson.excepciones.BOException;
 
@@ -37,4 +38,6 @@ public interface iResiduoBO {
      *                     posibles excepciones específicas.
      */
     public Residuo buscar(int idResiduo) throws BOException;
+    
+    public List<Residuo> obtenerTodosLosResiduos() throws BOException;
 }

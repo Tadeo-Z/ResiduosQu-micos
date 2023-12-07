@@ -4,6 +4,7 @@
  */
 package org.itson.interfaces;
 
+import java.util.List;
 import org.itson.entidades.Solicitud;
 import org.itson.excepciones.BOException;
 
@@ -17,7 +18,7 @@ import org.itson.excepciones.BOException;
  * Las clases que implementen esta interfaz deben proporcionar implementaciones para registrar
  * y buscar información relacionada con solicitudes de residuos.
  */
-public interface iResiduoSolicitudBO {
+public interface iSolicitudBO {
 
     /**
      * Registra una nueva solicitud de residuos.
@@ -27,7 +28,7 @@ public interface iResiduoSolicitudBO {
      * @throws BOException Si hay un problema durante el proceso de registro, encapsulando
      *                     posibles excepciones específicas.
      */
-    public ResiduoSolicitud registrar(ResiduoSolicitud residuoSolicitudRegistrar) throws BOException;
+    public Solicitud registrar(Solicitud solicitudRegistrar) throws BOException;
 
     /**
      * Busca una solicitud de residuos por su ID.
@@ -37,5 +38,7 @@ public interface iResiduoSolicitudBO {
      * @throws BOException Si hay un problema durante el proceso de búsqueda, encapsulando
      *                     posibles excepciones específicas.
      */
-    public ResiduoSolicitud buscar(int idResiduoSolicitud) throws BOException;
+    public Solicitud buscar(int idSolicitud) throws BOException;
+    
+    public List<Solicitud> obtenerTodasLasSolicitudes() throws BOException;
 }

@@ -4,6 +4,7 @@
  */
 package org.itson.interfaces;
 
+import java.util.List;
 import org.itson.entidades.Quimico;
 import org.itson.excepciones.PersistenciaException;
 
@@ -17,4 +18,6 @@ public interface iQuimico {
     public Quimico registrar(Quimico quimicoRegistrar) throws PersistenciaException;
 
     public Quimico buscar(int idQuimico) throws PersistenciaException;
+    
+    public List<Quimico> obtenerTodosLosQuimicos() throws PersistenciaException;
 }

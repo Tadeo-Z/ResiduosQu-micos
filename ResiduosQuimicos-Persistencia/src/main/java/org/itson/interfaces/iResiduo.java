@@ -4,6 +4,7 @@
  */
 package org.itson.interfaces;
 
+import java.util.List;
 import org.itson.entidades.Residuo;
 import org.itson.excepciones.PersistenciaException;
 
@@ -17,4 +18,6 @@ public interface iResiduo {
     public Residuo registrar(Residuo residuoRegistrar) throws PersistenciaException;
 
     public Residuo buscar(int idResiduo) throws PersistenciaException;
+    
+    public List<Residuo> obtenerTodosLosResiduos() throws PersistenciaException;
 }

@@ -4,8 +4,10 @@
  */
 package org.itson.implementaciones;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import org.itson.conexion.Conexion;
 import org.itson.entidades.Solicitud;
 import org.itson.excepciones.PersistenciaException;
@@ -78,4 +80,21 @@ public class SolicitudDAO implements iSolicitud {
 
         return solicitudBuscar;
     }
+    
+    public List<Solicitud> obtenerTodasLasSolicitudes() throws PersistenciaException{
+        EntityManager em = emf.createEntityManager();
+        List<Solicitud> solicitudes = null;
+        
+        try{
+            em.getTransaction().begin();
+            TypedQuery<Solicitud> query = em.createQuery("SELECT s FROM Solicitud s", Solicitud.class);
+            solicitudes = query.getResultList();
+            em.getTransaction().commit();
+        }catch(Exception e){
+            em.getTransaction().rollback();
+        }
+        
+        return solicitudes;
+    }
+    
 }

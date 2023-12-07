@@ -4,6 +4,7 @@
  */
 package org.itson.interfaces;
 
+import java.util.List;
 import org.itson.entidades.Solicitud;
 import org.itson.excepciones.PersistenciaException;
 
@@ -18,4 +19,6 @@ public interface iSolicitud {
     public Solicitud registrar(Solicitud solicitudRegistrar) throws PersistenciaException;
 
     public Solicitud buscar(int idSolicitud) throws PersistenciaException;
+    
+    public List<Solicitud> obtenerTodasLasSolicitudes() throws PersistenciaException;
 }
